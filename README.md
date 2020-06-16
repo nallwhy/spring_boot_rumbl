@@ -1,13 +1,16 @@
 # Spring Boot Rumbl
 
-- [ ] Spring Boot 2.3
-- [ ] Kotlin 1.3.7
+- [x] Spring Boot 2.3
+- [x] Kotlin 1.3.7
 - [ ] Postgres 12.0
 - [ ] Multi-module
 - [ ] DB schema version control
+- [ ] JPA
 - [ ] NO JPA
+- [ ] JDBC
+- [ ] R2DBC
 - [ ] Testing
-- [ ] MVC
+- [x] MVC
 - [ ] WebFlux
 - [ ] Caching
 - [ ] i18n
