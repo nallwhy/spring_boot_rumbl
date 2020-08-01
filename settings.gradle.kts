@@ -1,3 +1,3 @@
 rootProject.name = "rumbl"
 
-include("rumbl-web")
+include("rumbl-domain", "rumbl-web")
