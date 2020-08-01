@@ -1,4 +1,4 @@
-package ee.maytr.rumbl.controller
+package ee.maytr.rumbl.web.controller
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

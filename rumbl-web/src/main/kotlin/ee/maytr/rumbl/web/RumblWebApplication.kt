@@ -1,11 +1,11 @@
-package ee.maytr.rumbl
+package ee.maytr.rumbl.web
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RumblApplication
+class RumblWebApplication
 
 fun main(args: Array<String>) {
-	runApplication<RumblApplication>(*args)
+	runApplication<RumblWebApplication>(*args)
 }
