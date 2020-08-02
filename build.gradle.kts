@@ -1,12 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-}
-
 plugins {
 	id("org.springframework.boot") version "2.3.1.RELEASE" apply false
 	id("io.spring.dependency-management") version "1.0.9.RELEASE" apply false
@@ -40,10 +34,6 @@ project("rumbl-domain") {
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-
-	repositories {
-		mavenCentral()
-	}
 
 	dependencies {
 		implementation(kotlin("stdlib"))
@@ -79,10 +69,6 @@ project("rumbl-web") {
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-
-	repositories {
-		mavenCentral()
-	}
 
 	dependencies {
 		api(project(":rumbl-domain"))
