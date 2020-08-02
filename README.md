@@ -3,7 +3,7 @@
 - [x] Spring Boot 2.3
 - [x] Kotlin 1.3.7
 - [ ] Postgres 12.0
-- [ ] Multi-module
+- [x] Multi-module
 - [ ] DB schema version control
 - [ ] JPA
 - [ ] NO JPA
