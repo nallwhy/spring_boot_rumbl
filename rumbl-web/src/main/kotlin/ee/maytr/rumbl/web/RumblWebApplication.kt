@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class RumblWebApplication
 
 fun main(args: Array<String>) {
-	runApplication<RumblWebApplication>(*args)
+    runApplication<RumblWebApplication>(*args)
 }
