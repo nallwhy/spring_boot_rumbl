@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nallwhy_spring_boot_rumbl&metric=alert_status)](https://sonarcloud.io/dashboard?id=nallwhy_spring_boot_rumbl)
+
 # Spring Boot Rumbl
 
 - [x] Spring Boot 2.3
