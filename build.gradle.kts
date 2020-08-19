@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
     id("org.springframework.boot") version "2.3.1.RELEASE" apply false
     id("io.spring.dependency-management") version "1.0.9.RELEASE" apply false
@@ -18,18 +15,31 @@ allprojects {
         mavenCentral()
     }
 
-    tasks.withType<JavaCompile> {
-        sourceCompatibility = "11"
-    }
+    tasks {
+        compileJava {
+            sourceCompatibility = "11"
+        }
 
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
+        compileKotlin {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "11"
+            }
+        }
+
+        compileTestKotlin {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "11"
+            }
         }
     }
 }
 
-tasks.withType<BootJar> {
-    enabled = false
+subprojects {
+    dependencies {
+        testImplementation("org.springframework.boot:spring-boot-starter-test") {
+            exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+        }
+    }
 }
