@@ -4,9 +4,9 @@
 
 - [x] Spring Boot 2.3
 - [x] Kotlin 1.3.7
-- [ ] Postgres 12.0
+- [x] Postgres 12
 - [x] Multi-module
-- [ ] DB schema version control
+- [x] DB schema version control
 - [ ] JPA
 - [ ] NO JPA
 - [ ] JDBC
@@ -25,3 +25,23 @@ TBD
 
 - Spring Guides(https://spring.io/guides)
 - Spring in Action, 5th
+
+# How to run
+
+## Run DB in docker
+
+```shell
+$ docker-compose up -d
+```
+
+## Run DB migration
+
+```shell
+$ gradle rumbl-domain:jarmonicaUp
+```
+
+## Run Spring Boot Application
+
+```shell
+$ gradle rumbl-domain:bootRun
+```
