@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.rsocket.context.LocalRSocketServerPort
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.messaging.rsocket.RSocketRequester
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
@@ -54,5 +55,25 @@ class HealthChannelTests {
         StepVerifier
             .create(response)
             .verifyComplete()
+    }
+
+    @Test
+    fun `request-stream model`() {
+        val stream: Flux<Message> =
+            requester
+                .route("request-stream")
+                .data(Message("test"))
+                .retrieveFlux(Message::class.java)
+
+        StepVerifier
+            .create(stream)
+            .consumeNextWith { message ->
+                assertEquals("You said: test. Response #0", message.content)
+            }
+            .consumeNextWith { message ->
+                assertEquals("You said: test. Response #1", message.content)
+            }
+            .thenCancel()
+            .verify()
     }
 }
