@@ -10,6 +10,7 @@ import org.springframework.messaging.rsocket.RSocketRequester
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
+import java.time.Duration
 
 @SpringBootTest
 class HealthChannelTests {
@@ -72,6 +73,37 @@ class HealthChannelTests {
             }
             .consumeNextWith { message ->
                 assertEquals("You said: test. Response #1", message.content)
+            }
+            .thenCancel()
+            .verify()
+    }
+
+    @Test
+    fun `stream-stream model`() {
+        val setting0: Mono<Long> = Mono.just(2L).delayElement(Duration.ofSeconds(0))
+        val setting1: Mono<Long> = Mono.just(1L).delayElement(Duration.ofSeconds(5))
+
+        val settings: Flux<Long> = Flux.concat(setting0, setting1)
+
+        val stream: Flux<Message> =
+            requester
+                .route("stream-stream")
+                .data(settings)
+                .retrieveFlux(Message::class.java)
+
+        StepVerifier
+            .create(stream)
+            .consumeNextWith { message ->
+                assertEquals("Stream response #0", message.content)
+            }
+            .consumeNextWith { message ->
+                assertEquals("Stream response #1", message.content)
+            }
+            .consumeNextWith { message ->
+                assertEquals("Stream response #0", message.content)
+            }
+            .consumeNextWith { message ->
+                assertEquals("Stream response #1", message.content)
             }
             .thenCancel()
             .verify()

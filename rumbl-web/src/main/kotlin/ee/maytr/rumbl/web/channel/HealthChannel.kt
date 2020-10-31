@@ -35,4 +35,15 @@ class HealthChannel {
             }
             .log()
     }
+
+    @MessageMapping("stream-stream")
+    fun streamStream(settings: Flux<Long>): Flux<Message> {
+        logger.debug { "stream-stream request" }
+        return settings
+            .doOnNext { setting -> logger.debug { "Requested interval is $setting seconds." } }
+            .doOnCancel { logger.warn { "The client cancelled the channel." } }
+            .switchMap { setting -> Flux.interval(Duration.ofSeconds(setting)) }
+            .map { i -> Message("Stream response #$i") }
+            .log()
+    }
 }
