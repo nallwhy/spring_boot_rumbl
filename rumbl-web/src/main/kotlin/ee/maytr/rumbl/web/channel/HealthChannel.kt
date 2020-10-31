@@ -16,4 +16,10 @@ class HealthChannel {
         logger.debug { "request-response message: $message" }
         return Mono.just(Message("You said: ${message.content}"))
     }
+
+    @MessageMapping("fire-and-forget")
+    fun fireAndForget(message: Message): Mono<Void> {
+        logger.debug { "fire-and-forget message: $message" }
+        return Mono.empty()
+    }
 }

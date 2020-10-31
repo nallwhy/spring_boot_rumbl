@@ -42,4 +42,17 @@ class HealthChannelTests {
             }
             .verifyComplete()
     }
+
+    @Test
+    fun `fire-and-forget model`() {
+        val response: Mono<Void> =
+            requester
+                .route("fire-and-forget")
+                .data(Message("test"))
+                .retrieveMono(Void::class.java)
+
+        StepVerifier
+            .create(response)
+            .verifyComplete()
+    }
 }
