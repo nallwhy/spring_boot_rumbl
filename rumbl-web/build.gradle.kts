@@ -12,6 +12,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation("io.projectreactor:reactor-test:3.4.0")
 }
 
 tasks.withType<Test> {
