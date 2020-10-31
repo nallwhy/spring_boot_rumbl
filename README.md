@@ -15,6 +15,7 @@
 - [ ] Testing
 - [x] MVC
 - [ ] WebFlux
+- [x] RSocket
 - [ ] Caching
 - [ ] i18n
 
@@ -24,8 +25,9 @@ TBD
 
 ## References
 
-- Spring Guides(https://spring.io/guides)
+- [Spring Guides](https://spring.io/guides)
 - Spring in Action, 5th
+- [Getting Started With RSocket - SpringOne 2020](https://www.youtube.com/watch?v=dp1lGH2OCUs)
 
 # How to run
 
