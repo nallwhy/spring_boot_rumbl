@@ -6,6 +6,7 @@
 - [x] Kotlin 1.3.7
 - [x] Postgres 12
 - [x] Multi-module
+- [x] Multi-env properties
 - [x] Logging
 - [x] DB schema version control
 - [ ] JPA
