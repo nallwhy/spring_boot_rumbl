@@ -22,6 +22,7 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     runtimeOnly("org.postgresql:postgresql")
     implementation("com.improve_future:harmonica:1.1.26")
     implementation("org.reflections:reflections:0.9.11")
