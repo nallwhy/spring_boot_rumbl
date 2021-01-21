@@ -6,6 +6,11 @@ spring:
   rsocket:
     server:
       port: 7000
+  datasource:
+    url: "jdbc:postgresql://localhost:45432/rumbl-local"
+    username: "postgres"
+    password: "postgres"
+    driver-class-name: org.postgresql.Driver
 logging:
   level:
     root: debug
