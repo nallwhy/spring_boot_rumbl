@@ -11,7 +11,7 @@
 - [x] DB schema version control
 - [ ] JPA
 - [ ] NO JPA
-- [ ] JDBC
+- [x] JDBC
 - [ ] R2DBC
 - [ ] Testing
 - [x] MVC
