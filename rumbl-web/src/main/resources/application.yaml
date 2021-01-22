@@ -7,4 +7,4 @@ logging:
 
 #---
 spring.config.activate.on-profile: local
-spring.config.import: application-spring-local.yaml
+spring.config.import: application-database-local.yaml, application-spring-local.yaml

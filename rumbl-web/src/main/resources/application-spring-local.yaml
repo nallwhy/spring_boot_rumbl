@@ -6,11 +6,6 @@ spring:
   rsocket:
     server:
       port: 7000
-  datasource:
-    # Reference: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-configure-a-datasource
-    jdbc-url: "jdbc:postgresql://localhost:45432/rumbl-local"
-    username: "postgres"
-    password: "postgres"
 logging:
   level:
     root: debug
