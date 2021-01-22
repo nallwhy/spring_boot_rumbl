@@ -4,3 +4,7 @@ spring:
 logging:
   level:
     root: info
+
+#---
+spring.config.activate.on-profile: local
+spring.config.import: application-spring-local.yaml
