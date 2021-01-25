@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
 import org.springframework.stereotype.Repository
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 import java.sql.Connection
 
 @Repository
@@ -34,6 +36,7 @@ class UserJDBCDAO(
         return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Int::class.java)!!
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     fun create(email: String): User? {
         val keyHolder: KeyHolder = GeneratedKeyHolder()
 
