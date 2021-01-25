@@ -5,7 +5,7 @@ import com.improve_future.harmonica.core.AbstractMigration
 /**
  * Migration
  */
-class M20210121161544997_Create_users : AbstractMigration() {
+class M20210121161544997_CreateUsers : AbstractMigration() {
     override fun up() {
         createTable("users") {
             varchar("email", nullable = false)

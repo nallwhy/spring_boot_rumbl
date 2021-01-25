@@ -5,7 +5,7 @@ import com.improve_future.harmonica.core.AbstractMigration
 /**
  * Migration
  */
-class M20200829150015955_Create_tests : AbstractMigration() {
+class M20200829150015955_CreateTests : AbstractMigration() {
     override fun up() {
         createTable("tests") {
             integer("integer_column", default = 8)
