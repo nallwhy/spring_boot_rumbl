@@ -1,0 +1,4 @@
+datasource:
+  jdbc-url: "jdbc:postgresql://localhost:45432/rumbl-test"
+  username: "postgres"
+  password: "postgres"
