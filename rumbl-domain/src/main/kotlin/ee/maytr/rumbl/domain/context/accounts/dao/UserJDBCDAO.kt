@@ -10,7 +10,7 @@ import java.sql.Connection
 @Repository
 class UserJDBCDAO(
     private val jdbcTemplate: JdbcTemplate
-) {
+) : UserDAO {
     companion object {
         private const val GET_QUERY = "SELECT * FROM users WHERE id = ?"
         private const val LIST_QUERY = "SELECT * FROM users"
@@ -18,23 +18,23 @@ class UserJDBCDAO(
         private const val INSERT_QUERY = "INSERT INTO users (email) VALUES (?)"
     }
 
-    fun get(id: Long): User? {
+    override fun get(id: Long): User? {
         return jdbcTemplate.queryForObject(GET_QUERY, { rs, _ ->
             User(rs.getLong("id"), rs.getString("email"))
         }, id)
     }
 
-    fun list(): List<User> {
+    override fun list(): List<User> {
         return jdbcTemplate.query(LIST_QUERY) { rs, _ ->
             User(rs.getLong("id"), rs.getString("email"))
         }
     }
 
-    fun getCount(): Int {
+    override fun getCount(): Int {
         return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Int::class.java)!!
     }
 
-    fun create(email: String): User? {
+    override fun create(email: String): User? {
         val keyHolder: KeyHolder = GeneratedKeyHolder()
 
         jdbcTemplate.update({ connection: Connection ->
