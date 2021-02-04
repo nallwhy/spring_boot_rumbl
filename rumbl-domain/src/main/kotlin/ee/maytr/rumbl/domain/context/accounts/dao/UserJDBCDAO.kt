@@ -1,6 +1,7 @@
 package ee.maytr.rumbl.domain.context.accounts.dao
 
 import ee.maytr.rumbl.domain.context.accounts.model.User
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
@@ -19,9 +20,13 @@ class UserJDBCDAO(
     }
 
     override fun get(id: Long): User? {
-        return jdbcTemplate.queryForObject(GET_QUERY, { rs, _ ->
-            User(rs.getLong("id"), rs.getString("email"))
-        }, id)
+        return try {
+            jdbcTemplate.queryForObject(GET_QUERY, { rs, _ ->
+                User(rs.getLong("id"), rs.getString("email"))
+            }, id)
+        } catch (e: EmptyResultDataAccessException) {
+            null
+        }
     }
 
     override fun list(): List<User> {
