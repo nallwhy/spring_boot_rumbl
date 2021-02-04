@@ -23,6 +23,13 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
+    val exposedVersion = "0.29.1"
+    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
+
     runtimeOnly("org.postgresql:postgresql")
     implementation("com.improve_future:harmonica:1.1.26")
     implementation("org.reflections:reflections:0.9.11")

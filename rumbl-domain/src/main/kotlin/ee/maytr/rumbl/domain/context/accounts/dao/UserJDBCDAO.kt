@@ -1,6 +1,7 @@
 package ee.maytr.rumbl.domain.context.accounts.dao
 
 import ee.maytr.rumbl.domain.context.accounts.model.User
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
@@ -10,7 +11,7 @@ import java.sql.Connection
 @Repository
 class UserJDBCDAO(
     private val jdbcTemplate: JdbcTemplate
-) {
+) : UserDAO {
     companion object {
         private const val GET_QUERY = "SELECT * FROM users WHERE id = ?"
         private const val LIST_QUERY = "SELECT * FROM users"
@@ -18,23 +19,27 @@ class UserJDBCDAO(
         private const val INSERT_QUERY = "INSERT INTO users (email) VALUES (?)"
     }
 
-    fun get(id: Long): User? {
-        return jdbcTemplate.queryForObject(GET_QUERY, { rs, _ ->
-            User(rs.getLong("id"), rs.getString("email"))
-        }, id)
+    override fun get(id: Long): User? {
+        return try {
+            jdbcTemplate.queryForObject(GET_QUERY, { rs, _ ->
+                User(rs.getLong("id"), rs.getString("email"))
+            }, id)
+        } catch (e: EmptyResultDataAccessException) {
+            null
+        }
     }
 
-    fun list(): List<User> {
+    override fun list(): List<User> {
         return jdbcTemplate.query(LIST_QUERY) { rs, _ ->
             User(rs.getLong("id"), rs.getString("email"))
         }
     }
 
-    fun getCount(): Int {
-        return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Int::class.java)!!
+    override fun getCount(): Long {
+        return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Long::class.java)!!
     }
 
-    fun create(email: String): User? {
+    override fun create(email: String): User? {
         val keyHolder: KeyHolder = GeneratedKeyHolder()
 
         jdbcTemplate.update({ connection: Connection ->
