@@ -23,9 +23,7 @@ class HealthChannelTests {
             @Autowired builder: RSocketRequester.Builder,
             @LocalRSocketServerPort port: Int
         ) {
-            requester = builder
-                .connectTcp("localhost", port)
-                .block()!!
+            requester = builder.tcp("localhost", port)
         }
     }
 
