@@ -42,9 +42,7 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-log4j2")
         implementation("io.github.microutils:kotlin-logging:1.12.0")
-        testImplementation("org.springframework.boot:spring-boot-starter-test") {
-            exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-        }
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
     configurations {
