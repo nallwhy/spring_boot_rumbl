@@ -30,8 +30,8 @@ class UserJDBCDAO(
         }
     }
 
-    override fun getCount(): Int {
-        return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Int::class.java)!!
+    override fun getCount(): Long {
+        return jdbcTemplate.queryForObject(GET_COUNT_QUERY, Long::class.java)!!
     }
 
     override fun create(email: String): User? {

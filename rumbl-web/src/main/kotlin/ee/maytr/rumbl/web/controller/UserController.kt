@@ -24,7 +24,7 @@ class UserController(
     }
 
     @GetMapping("/users/count")
-    fun getCount(): Int {
+    fun getCount(): Long {
         return userDAO.getCount()
     }
 
