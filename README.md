@@ -10,7 +10,7 @@
 - [x] Logging
 - [x] DB schema version control
 - [ ] JPA
-- [ ] NO JPA
+- [x] NO JPA (Exposed)
 - [x] JDBC
 - [ ] R2DBC
 - [ ] Testing
@@ -30,7 +30,7 @@ TBD
 - Spring in Action, 5th
 - [Getting Started With RSocket - SpringOne 2020](https://www.youtube.com/watch?v=dp1lGH2OCUs)
 
-# How to run
+# How to run Application
 
 ## Run DB in docker
 
@@ -48,4 +48,18 @@ $ gradle rumbl-domain:jarmonicaUp
 
 ```shell
 $ gradle rumbl-domain:bootRun
+```
+
+# How to run test
+
+## Run DB migration
+
+```shell
+$ gradle rumbl-domain:jarmonicaUp -Penv=Test
+```
+
+## Run test
+
+```shell
+$ gradle test
 ```
