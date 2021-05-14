@@ -1,10 +1,12 @@
-spring:
-  main:
-    lazy-initialization: true
 logging:
   level:
     root: info
 
-#---
+spring.config.import: application-database.yaml, application-spring.yaml
+---
 spring.config.activate.on-profile: local
-spring.config.import: application-database-local.yaml, application-spring-local.yaml
+server:
+  port: 4000
+logging:
+  level:
+    root: debug

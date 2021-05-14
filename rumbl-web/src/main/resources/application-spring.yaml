@@ -1,0 +1,11 @@
+spring:
+  main:
+    lazy-initialization: false
+  rsocket:
+    server:
+      port: 7000
+---
+spring.config.activate.on-profile: local
+spring:
+  main:
+    lazy-initialization: true
