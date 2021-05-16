@@ -10,16 +10,18 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest
-import org.springframework.context.annotation.Import
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
+import javax.sql.DataSource
 
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(DataSourceConfig::class)
-@ContextConfiguration(classes = [UserJDBCDAO::class])
-class UserJDBCDAOTests {
-    @Autowired
-    private lateinit var userJDBCDAO: UserJDBCDAO
+@ContextConfiguration(classes = [DataSourceConfig::class])
+class UserJDBCDAOTests(
+    @Autowired val dataSource: DataSource
+) {
+    private val jdbcTemplate = JdbcTemplate(dataSource)
+    private val userJDBCDAO = UserJDBCDAO(jdbcTemplate)
 
     private val attrs = mapOf("email" to "test@example.com")
 

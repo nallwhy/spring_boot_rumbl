@@ -7,19 +7,15 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest
-import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(DataSourceConfig::class, ExposedConfig::class)
-@ContextConfiguration(classes = [UserExposedDAO::class])
+@ContextConfiguration(classes = [DataSourceConfig::class, ExposedConfig::class])
 class UserExposedDAOTests {
-    @Autowired
-    private lateinit var userExposedDAO: UserExposedDAO
+    private val userExposedDAO = UserExposedDAO()
 
     private val attrs = mapOf("email" to "test@example.com")
 
